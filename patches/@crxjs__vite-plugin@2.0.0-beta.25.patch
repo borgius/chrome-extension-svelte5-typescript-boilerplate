@@ -1,0 +1,22 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index c543f3e83ffb5210495ac735f9a906e59b9da491..8d66236b24a8e604b6ccd376bc5857bea45b5968 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -98,7 +98,7 @@ function encodeManifest(manifest) {
+   return `export default ${json}`;
+ }
+ function parseJsonAsset(bundle, key) {
+-  const asset = bundle[key];
++  const asset = bundle[key] || bundle[`.vite/${key}`];
+   if (typeof asset === "undefined")
+     throw new TypeError(`OutputBundle["${key}"] is undefined.`);
+   if (asset.type !== "asset")
+@@ -180,7 +180,7 @@ class RxMap extends Map {
+     const changeMethodKeys = ["clear", "set", "delete"];
+     for (const type of changeMethodKeys) {
+       const method = this[type];
+-      this[type] = function(...args) {
++      this[type] = function (...args) {
+         const result = method.call(this, ...args);
+         change$.next({ type, key: args[0], value: args[1], map: this });
+         return result;

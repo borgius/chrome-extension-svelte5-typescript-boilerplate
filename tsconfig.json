@@ -1,0 +1,44 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true,
+    "types": [
+      "chrome"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@lib/*": [
+        "./lib/*"
+      ],
+      "@vendor/*": [
+        "./vendor/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ]
+    }
+  },
+  "ignore": [
+    "src/constants.js",
+    "node_modules/*",
+    "dist/*"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

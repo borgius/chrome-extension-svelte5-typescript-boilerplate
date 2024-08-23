@@ -1,0 +1,55 @@
+{
+  "name": "chrome-extension-svelte-typescript-boilerplate",
+  "description": "",
+  "version": "0.0.3",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/borgius/chrome-extension-svelte-typescript-boilerplate.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:clean": "rm -rf dist extension.zip *.crx vite.config.ts.timestamp-*.json",
+    "build:vite": "vite build",
+    "build:zip": "rm -f extension.zip; cd dist; zip -r extension .; mv extension.zip ..",
+    "build:pack": "node -e 'import(`./crx.js`).then(u => u.packExtension())'",
+    "build": "run-s -ln build:*",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.25",
+    "@svelte-plugins/tooltips": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "3.1.2",
+    "@tsconfig/svelte": "5.0.4",
+    "@types/chrome": "0.0.270",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^22.5.0",
+    "@unocss/extractor-svelte": "^0.62.2",
+    "@unocss/preset-icons": "^0.62.2",
+    "@unocss/svelte-scoped": "^0.62.2",
+    "autoprefixer": "^10.4.20",
+    "cash-dom": "^8.1.5",
+    "crypt-aes": "^1.1.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "easy-web-crypto": "^1.4.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.77.8",
+    "svelte": "next",
+    "svelte-check": "3.8.6",
+    "svelte-preprocess": "6.0.2",
+    "tslib": "2.7.0",
+    "typescript": "5.5.4",
+    "unocss": "^0.62.2",
+    "vite": "5.4.2",
+    "vite-plugin-javascript-obfuscator": "^3.1.0",
+    "vite-tsconfig-paths": "^5.0.1",
+    "webext-bridge": "^6.0.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@crxjs/vite-plugin@2.0.0-beta.25": "patches/@crxjs__vite-plugin@2.0.0-beta.25.patch",
+      "@unocss/svelte-scoped@0.62.2": "patches/@unocss__svelte-scoped@0.62.2.patch"
+    }
+  }
+}
